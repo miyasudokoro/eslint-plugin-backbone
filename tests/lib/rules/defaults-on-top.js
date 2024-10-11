@@ -1,5 +1,5 @@
 /**
- * @fileoverview Require defaults to be on top of the model
+ * @file Require defaults to be on top of the model
  * @author Ilya Volodin
  */
 "use strict";

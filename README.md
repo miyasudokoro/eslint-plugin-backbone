@@ -66,47 +66,42 @@ Defaults are currently set to the following:
 
 ## Configuration
 
-In version 2.0.0 removed support for default configurations for plugins and replaced it with ability for plugins to bundle configs. This plugin include `recommended` 
-configuration that you can extend from to enable recommended setup of the rules (see "Default configuration" for the list of enabled rules).
+In version 3.0.0, configurations upgraded to ESLint flat config.
 
-To enable bundled config modify your .eslintrc file to include the following line:
+### Using the recommended configuration
 
-```json
-{
-    "extends": "plugin:backbone/recommended"
-}
+```javascript
+import backbone from "eslint-plugin-backbone";
+
+export default [
+    backbone.configs.recommended
+]
 ```
 
 This will enable all of the rules listed above, as well as add two global variables - `Backbone` and `_`.
 
-## Modify .eslintrc for your project
+## Using specific rules
 
-Add `plugins` section and specify eslint-plugin-backbone as a plugin
+Add `plugins` section and specify eslint-plugin-backbone as a plugin.
+Enable all the rules you would like to use.
 
-```json
+```javascript
+import backbone from "eslint-plugin-backbone";
 
-{
-    "plugins": [
-        "backbone"
-    ]
-}
-```
-
-Enable all of the rules that you would like to use
-
-```json
-
-{
-    "rules": {
+export default [ {
+    plugins: {
+        "backbone": backbone
+    },
+    rules: {
         "backbone/collection-model": 1,
         "backbone/defaults-on-top": 1,
         "backbone/model-defaults": 1,
         "backbone/no-constructor": 1,
         "backbone/no-native-jquery": 1,
-        ...
     }
-}
+} ]
 ```
+
 
 If you are using custom models/view/collection bases you also have to specify each on in the `settings` section
 
