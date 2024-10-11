@@ -16,7 +16,7 @@ var rule = require("../../../lib/rules/defaults-on-top");
 //------------------------------------------------------------------------------
 
 var eslintTester = new RuleTester({
-    parserOptions: {
+    languageOptions: {
         ecmaVersion: 8,
         sourceType: "module"
     }

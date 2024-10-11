@@ -12,14 +12,15 @@ eslint-plugin-backbone
 
 ```bash
 
-npm install eslint@">=1.0.0"
+npm install eslint@latest
 
 or
 
-npm install eslint@">=1.0.0" --save-dev
+npm install eslint@latest --save-dev
 ```
 
-eslint-plugin-backbone requires `ESLint` with version greater then 1.0.0 if you would like to use your own base models.
+`eslint-plugin-backbone` version 3.0.0+ requires `ESLint` with version greater than 9.0.0.
+To use an older version of `ESLint`, use `eslint-plugin-backbone` version 2.1.1.
 
 ## Install Backbone plugins.
 If you installed `ESLint` globally, you have to install Backbone plugin globally too. Otherwise, install it locally.
@@ -31,37 +32,6 @@ npm install eslint-plugin-backbone
 or
 
 npm install eslint-plugin-backbone --save-dev
-```
-
-## Default configuration
-
-**Deprecated in v2**
-
-**note:** ESLint v2 removed support for default configurations. Please see config below for details.
-
-If you are using ESLint >0.9.0 then this plugin will provide default configuration. If you are fine with defaults, you do not need to update your .eslintrc file.
-
-Defaults are currently set to the following:
-
-```json
-    "collection-model": 2,
-    "defaults-on-top": 1,
-    "event-scope": 1,
-    "events-on-top": [1, ["tagName", "className"]],
-    "initialize-on-top": [1, { View: ["tagName", "className", "events"], Model: ["defaults", "url", "urlRoot"], Collection: ["model", "url"] }],
-    "model-defaults": 2,
-    "no-changed-set": 2,
-    "no-collection-models": 2,
-    "no-constructor": 1,
-    "no-el-assign": 2,
-    "no-model-attributes": 2,
-    "no-native-jquery": [1, "selector"],
-    "no-silent": 1,
-    "no-view-collection-models": 2,
-    "no-view-model-attributes": 2,
-    "no-view-onoff-binding": 2,
-    "no-view-qualified-jquery": 0,
-    "render-return": 2
 ```
 
 ## Configuration
@@ -78,9 +48,59 @@ export default [
 ]
 ```
 
-This will enable all of the rules listed above, as well as add two global variables - `Backbone` and `_`.
+This will enable the rules listed below, as well as add two global variables - `Backbone` and `_`.
 
-## Using specific rules
+```json
+{
+    "collection-model": 2,
+    "defaults-on-top": 1,
+    "event-scope": 1,
+    "events-on-top": [
+        1,
+        [
+            "tagName",
+            "className"
+        ]
+    ],
+    "initialize-on-top": [
+        1,
+        {
+            "View": [
+                "tagName",
+                "className",
+                "events"
+            ],
+            "Model": [
+                "defaults",
+                "url",
+                "urlRoot"
+            ],
+            "Collection": [
+                "model",
+                "url"
+            ]
+        }
+    ],
+    "model-defaults": 2,
+    "no-changed-set": 2,
+    "no-collection-models": 2,
+    "no-constructor": 1,
+    "no-el-assign": 2,
+    "no-model-attributes": 2,
+    "no-native-jquery": [
+        1,
+        "selector"
+    ],
+    "no-silent": 1,
+    "no-view-collection-models": 2,
+    "no-view-model-attributes": 2,
+    "no-view-onoff-binding": 2,
+    "no-view-qualified-jquery": 0,
+    "render-return": 2
+}
+```
+
+### Using specific rules
 
 Add `plugins` section and specify eslint-plugin-backbone as a plugin.
 Enable all the rules you would like to use.
@@ -89,10 +109,10 @@ Enable all the rules you would like to use.
 import backbone from "eslint-plugin-backbone";
 
 export default [ {
-    plugins: {
+    "plugins": {
         "backbone": backbone
     },
-    rules: {
+    "rules": {
         "backbone/collection-model": 1,
         "backbone/defaults-on-top": 1,
         "backbone/model-defaults": 1,
@@ -105,9 +125,20 @@ export default [ {
 
 If you are using custom models/view/collection bases you also have to specify each on in the `settings` section
 
-```json
+```javascript
+import backbone from "eslint-plugin-backbone";
 
-{
+export default [ {
+    "plugins": {
+        "backbone": backbone
+    },
+    "rules": {
+        "backbone/collection-model": 1,
+        "backbone/defaults-on-top": 1,
+        "backbone/model-defaults": 1,
+        "backbone/no-constructor": 1,
+        "backbone/no-native-jquery": 1,
+    },
     "settings": {
         "backbone": {
             "Collection": ["Backbone.NestedCollection", "MyCollection"],
@@ -115,7 +146,7 @@ If you are using custom models/view/collection bases you also have to specify ea
             "View": ["MyBaseView"]
         }
     }
-}
+} ]
 ```
 
 # List of supported rules
