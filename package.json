@@ -2,10 +2,7 @@
     "name": "eslint-plugin-backbone",
     "version": "3.0.0",
     "description": "Eslint rules for Backbone.",
-    "exports": {
-        "import": "./index.mjs",
-        "require": "./index.js"
-    },
+    "main": "./index.js",
     "type": "commonjs",
     "scripts": {
         "test": "npm run lint && npm run unit-test",
